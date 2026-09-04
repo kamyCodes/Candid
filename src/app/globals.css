@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f6f8;
+  --foreground: #1b1e24;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Boardroom palette: cool graphite ink, porcelain surfaces, muted copper accent */
+  --color-canvas: #f5f6f8;
+  --color-ink: #1b1e24;
+  --color-ink-deep: #171a1f;
+  --color-ink-soft: #333a44;
+  --color-surface: #ffffff;
+  --color-line: #e2e5ea;
+  --color-muted: #5f6a76;
+  --color-accent: #b4531f;
+  --color-accent-deep: #93401a;
+  --color-accent-soft: #f6e9e1;
+  --color-gold: #e8a13b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9ced6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a9b0bb;
+}
+
+/* Stage chip colors (plain CSS so they can never be purged) */
+.chip-applied {
+  background-color: #e9eef3;
+  color: #3d5a73;
+  border-color: #d4dde6;
+}
+.chip-interview {
+  background-color: #eceaf2;
+  color: #5a4d7d;
+  border-color: #d8d3e4;
+}
+.chip-test {
+  background-color: #f5efe0;
+  color: #77602a;
+  border-color: #e7dbbb;
+}
+.chip-offer {
+  background-color: #e6eee9;
+  color: #2f5d49;
+  border-color: #cfded5;
+}
+.chip-accepted {
+  background-color: #e4f0e6;
+  color: #2e6b33;
+  border-color: #c9e0cc;
+}
+.chip-rejected {
+  background-color: #f6e7e2;
+  color: #96382b;
+  border-color: #e8cfc6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.22s ease-out;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: rise 0.3s ease-out both;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade {
+  animation: fade 0.18s ease-out;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.animate-fade-out {
+  animation: fadeOut 0.14s ease-in forwards;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-modal-in {
+  animation: modalIn 0.18s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@keyframes modalOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(6px) scale(0.97); }
+}
+.animate-modal-out {
+  animation: modalOut 0.15s ease-in forwards;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.animate-badge-pop {
+  animation: badgePop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes cardFlash {
+  0% { opacity: 0.55; transform: scale(0.97); box-shadow: 0 0 0 3px rgba(180, 83, 31, 0.45); }
+  60% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 3px rgba(180, 83, 31, 0.18); }
+  100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 3px rgba(180, 83, 31, 0); }
+}
+.animate-card-flash {
+  animation: cardFlash 0.55s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes rowFlash {
+  0% { background-color: rgba(180, 83, 31, 0.16); }
+  100% { background-color: rgba(180, 83, 31, 0); }
+}
+.animate-row-flash {
+  animation: rowFlash 0.7s ease-out;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slideInRight {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.animate-slideInLeft {
+  animation: slideInLeft 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastIn {
+  0% { opacity: 0; transform: translateY(12px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(12px); }
+}
+.toast-animate {
+  animation: toastIn 2.8s ease-in-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
